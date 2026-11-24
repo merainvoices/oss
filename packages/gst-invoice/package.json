@@ -1,0 +1,50 @@
+{
+  "name": "@merainvoices/gst-invoice",
+  "version": "0.1.0",
+  "description": "The money on an Indian GST invoice: lines, CGST/SGST/IGST, freight, invoice discount before or after GST, and round-off — exact to the paisa.",
+  "keywords": [
+    "gst",
+    "india",
+    "invoice",
+    "cgst",
+    "sgst",
+    "igst",
+    "tax",
+    "discount",
+    "round-off",
+    "paise"
+  ],
+  "license": "MIT",
+  "author": "REKSMART Insights Private Limited <team@merainvoices.com>",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "files": [
+    "src"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merainvoices/oss.git",
+    "directory": "packages/gst-invoice"
+  },
+  "homepage": "https://github.com/merainvoices/oss/tree/main/packages/gst-invoice#readme",
+  "bugs": {
+    "url": "https://github.com/merainvoices/oss/issues"
+  }
+}

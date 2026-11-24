@@ -8,6 +8,8 @@ Small, dependency-free JavaScript packages for Indian GST billing. The code come
 | [`@merainvoices/inr`](packages/inr) | ₹1,23,456.00 formatting, amount in words (lakh/crore), April–March financial year, Rule 46 invoice numbers |
 | [`@merainvoices/upi`](packages/upi) | Build and read `upi://pay` links for invoices and QR codes |
 | [`@merainvoices/gstr2b`](packages/gstr2b) | Read the GSTR-2B JSON from the GST portal and match it against your purchase register |
+| [`@merainvoices/gst-invoice`](packages/gst-invoice) | Invoice maths: lines, CGST/SGST/IGST, freight, discount before or after GST, round-off — exact to the paisa |
+| [`@merainvoices/bank-statement`](packages/bank-statement) | Read Indian bank statement exports and match them against your own records |
 
 Every package:
 

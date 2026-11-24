@@ -1,0 +1,17 @@
+{
+  "name": "merainvoices-oss",
+  "private": true,
+  "description": "Open-source building blocks for Indian GST billing, from Mera Invoices.",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "pack:check": "npm pack --dry-run --workspaces"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

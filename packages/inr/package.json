@@ -1,0 +1,49 @@
+{
+  "name": "@merainvoices/inr",
+  "version": "0.1.0",
+  "description": "Indian rupee formatting, amount in words (lakh/crore), the April–March financial year and GST invoice numbers.",
+  "keywords": [
+    "inr",
+    "rupee",
+    "india",
+    "amount-in-words",
+    "lakh",
+    "crore",
+    "financial-year",
+    "invoice-number",
+    "gst"
+  ],
+  "license": "MIT",
+  "author": "REKSMART Insights Private Limited <team@merainvoices.com>",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "files": [
+    "src"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merainvoices/oss.git",
+    "directory": "packages/inr"
+  },
+  "homepage": "https://github.com/merainvoices/oss/tree/main/packages/inr#readme",
+  "bugs": {
+    "url": "https://github.com/merainvoices/oss/issues"
+  }
+}

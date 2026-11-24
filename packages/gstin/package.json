@@ -1,0 +1,47 @@
+{
+  "name": "@merainvoices/gstin",
+  "version": "0.1.0",
+  "description": "Validate GSTINs (with check digit), read state and PAN, and decide CGST+SGST vs IGST.",
+  "keywords": [
+    "gstin",
+    "gst",
+    "india",
+    "pan",
+    "validation",
+    "igst",
+    "place-of-supply"
+  ],
+  "license": "MIT",
+  "author": "REKSMART Insights Private Limited <team@merainvoices.com>",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "files": [
+    "src"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merainvoices/oss.git",
+    "directory": "packages/gstin"
+  },
+  "homepage": "https://github.com/merainvoices/oss/tree/main/packages/gstin#readme",
+  "bugs": {
+    "url": "https://github.com/merainvoices/oss/issues"
+  }
+}

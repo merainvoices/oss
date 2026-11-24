@@ -6,6 +6,8 @@ Everything is calculated in whole paise, so the lines always add up to the invoi
 
 Zero dependencies. Works in Node 18+, browsers, React Native and edge runtimes. Ships with TypeScript types.
 
+<img src="https://raw.githubusercontent.com/merainvoices/oss/main/docs/images/anatomy.png" alt="A sample GST tax invoice: line items, freight, CGST and SGST split to the paisa, round-off and total, with each part linked to the package that produces it." width="100%"/>
+
 ```sh
 npm install @merainvoices/gst-invoice
 ```
@@ -81,6 +83,42 @@ Numbers may be given as numbers or numeric strings; blank values count as 0. A n
 ## Not covered
 
 Compensation cess, TCS, tax-inclusive prices and foreign-currency invoices.
+
+## Recipes
+
+### IGST or CGST + SGST from the GSTINs
+
+```js
+import { isInterStateSupply } from '@merainvoices/gstin'
+
+const invoice = computeInvoice({
+  items,
+  interState: isInterStateSupply({ seller: { gstin: '27ABCFS1234K1Z7' }, buyer: { gstin: buyerGstin, sez: buyerIsSez } }),
+})
+```
+
+### An export under LUT, or a bill of supply
+
+```js
+computeInvoice({ items, noTax: true })   // no GST on any line or on freight
+```
+
+### Print the discount line only when there is one
+
+```js
+if (invoice.discount.amount) {
+  const label = invoice.discount.type === 'percent' ? `Discount ${invoice.discount.value}%` : 'Discount'
+  rows.push([label, -invoice.discount.amount])
+}
+```
+
+### Store the figures
+
+Every figure comes back rounded to the paisa, so it fits a `NUMERIC(14,2)` column as it is. To store whole paise instead, use `Math.round(value * 100)`.
+
+The whole flow, with GSTIN check, invoice number, amount in words and UPI link: [`examples/full-invoice.mjs`](https://github.com/merainvoices/oss/blob/main/examples/full-invoice.mjs).
+
+Part of the [Mera Invoices toolkit](https://github.com/merainvoices/oss): [gstin](https://www.npmjs.com/package/@merainvoices/gstin) · [gst-invoice](https://www.npmjs.com/package/@merainvoices/gst-invoice) · [inr](https://www.npmjs.com/package/@merainvoices/inr) · [upi](https://www.npmjs.com/package/@merainvoices/upi) · [gstr2b](https://www.npmjs.com/package/@merainvoices/gstr2b) · [bank-statement](https://www.npmjs.com/package/@merainvoices/bank-statement).
 
 ## Licence
 

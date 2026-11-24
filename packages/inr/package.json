@@ -1,6 +1,6 @@
 {
   "name": "@merainvoices/inr",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Indian rupee formatting, amount in words (lakh/crore), the April–March financial year and GST invoice numbers.",
   "keywords": [
     "inr",

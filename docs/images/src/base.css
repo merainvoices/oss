@@ -1,0 +1,35 @@
+/* Shared look for the README images (bill-book style, Mera Invoices brand). */
+:root {
+  --ink: #141B2D; --ground: #F3F5F8; --rule: #DCE3EE; --muted: #6E788C; --body: #4A5468;
+  --blue: #2B3990; --blue-wash: #E8EBF7; --saffron: #FF9933; --saffron-wash: rgba(255, 153, 51, .14);
+  --good: #1E6B47; --good-wash: #E3F2EA; --warn: #8A5300; --warn-wash: #FFF0D4; --bad: #B42318; --bad-wash: #FDECEA;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { position: relative; overflow: hidden; background: var(--ground); color: var(--ink); font: 400 15px/1.4 'IBM Plex Sans', system-ui, sans-serif; }
+.mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+
+header { position: absolute; left: 64px; right: 64px; top: 44px; display: flex; justify-content: space-between; align-items: flex-start; }
+.eyebrow { font: 500 13px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+h1 { margin-top: 8px; font: 600 38px/1.1 'Geist', sans-serif; letter-spacing: -0.03em; text-wrap: balance; }
+.brand { display: flex; align-items: center; gap: 10px; font: 700 18px 'Geist', sans-serif; letter-spacing: -0.02em; }
+.brand img { width: 34px; height: 34px; }
+.label { font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+.paper { position: absolute; background: #fff; box-shadow: 0 1px 0 var(--rule), 0 30px 60px -30px rgba(20, 27, 45, .45); }
+.paper::before { content: ''; position: absolute; top: -5px; left: 0; right: 0; height: 10px;
+                 background: radial-gradient(circle at 7px 5px, #E3E9F2 3.5px, transparent 4px) 0 0 / 14px 10px repeat-x; }
+.card { background: #fff; border: 1px solid var(--rule); border-radius: 10px; }
+.spot { outline: 1.5px solid var(--saffron); outline-offset: 3px; background: var(--saffron-wash); border-radius: 2px; }
+.pill { display: inline-block; padding: 4px 12px 5px; border-radius: 999px; font: 600 14px 'Geist', sans-serif; letter-spacing: -0.005em; white-space: nowrap; }
+.pill.good { color: var(--good); background: var(--good-wash); }
+.pill.warn { color: var(--warn); background: var(--warn-wash); }
+.pill.info { color: var(--blue); background: var(--blue-wash); }
+.pill.bad  { color: var(--bad);  background: var(--bad-wash); }
+svg.links { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+footer { position: absolute; left: 64px; right: 64px; bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+footer .facts { font: 500 14px 'IBM Plex Mono', monospace; color: var(--body); }
+footer code { font: 500 14px 'IBM Plex Mono', monospace; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 8px; }
+footer code b { color: var(--saffron); font-weight: 500; }

@@ -1,6 +1,6 @@
 {
   "name": "@merainvoices/gst-invoice",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The money on an Indian GST invoice: lines, CGST/SGST/IGST, freight, invoice discount before or after GST, and round-off — exact to the paisa.",
   "keywords": [
     "gst",

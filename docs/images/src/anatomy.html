@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!-- Source for docs/images/anatomy.png (1280×960, rendered at 2×).
+     Every figure on the invoice was computed with the packages themselves.
+     Regenerate: node docs/images/render.mjs -->
+<html lang="en"><head><meta charset="UTF-8"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #141B2D; --ground: #F3F5F8; --rule: #DCE3EE; --muted: #6E788C; --body: #4A5468;
+    --blue: #2B3990; --saffron: #FF9933; --saffron-wash: rgba(255, 153, 51, .14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1280px; height: 960px; overflow: hidden; }
+  body { position: relative; background: var(--ground); color: var(--ink); font: 400 15px/1.4 'IBM Plex Sans', system-ui, sans-serif; }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  .muted { color: var(--muted); }
+
+  header { position: absolute; left: 64px; right: 64px; top: 44px; display: flex; justify-content: space-between; align-items: flex-start; }
+  .eyebrow { font: 500 13px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  h1 { margin-top: 8px; font: 600 38px/1.1 'Geist', sans-serif; letter-spacing: -0.03em; text-wrap: balance; }
+  .brand { display: flex; align-items: center; gap: 10px; font: 700 18px 'Geist', sans-serif; letter-spacing: -0.02em; }
+  .brand img { width: 34px; height: 34px; }
+
+  /* The invoice */
+  .paper { position: absolute; left: 64px; top: 146px; width: 600px; background: #fff; padding: 26px 28px 24px;
+           box-shadow: 0 1px 0 var(--rule), 0 30px 60px -30px rgba(20, 27, 45, .45); }
+  .paper::before { content: ''; position: absolute; top: -5px; left: 0; right: 0; height: 10px;
+                   background: radial-gradient(circle at 7px 5px, #E3E9F2 3.5px, transparent 4px) 0 0 / 14px 10px repeat-x; }
+  .top { display: flex; justify-content: space-between; gap: 16px; }
+  .seller { font: 700 19px 'Geist', sans-serif; letter-spacing: -0.015em; }
+  .kind { font: 700 13px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); text-align: right; }
+  .small { font-size: 13px; }
+  .billto { margin-top: 16px; padding-top: 12px; border-top: 1.5px solid var(--ink); display: flex; justify-content: space-between; gap: 16px; }
+  .label { font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  table { width: 100%; margin-top: 14px; border-collapse: collapse; }
+  th { font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: right; padding: 0 0 6px; border-bottom: 1px solid var(--rule); }
+  th:first-child, td:first-child { text-align: left; }
+  td { padding: 6px 0; border-bottom: 1px solid var(--rule); text-align: right; font-size: 14px; }
+  td.mono { font-size: 13.5px; }
+  td .note { display: block; font-size: 12px; color: var(--muted); }
+  .lower { display: flex; justify-content: space-between; gap: 22px; margin-top: 14px; }
+  .words { width: 250px; }
+  .words p { margin-top: 4px; font-size: 13.5px; line-height: 1.35; }
+  .qr { display: flex; gap: 10px; align-items: center; margin-top: 14px; }
+  .qr img { width: 74px; height: 74px; }
+  .totals { width: 262px; }
+  .totals .row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 14px; }
+  .totals .grand { margin-top: 6px; padding: 8px 0 7px; border-top: 1.5px solid var(--ink); border-bottom: 4px double var(--ink); font-weight: 700; font-size: 17px; }
+
+  /* What each package does */
+  .spot { outline: 1.5px solid var(--saffron); outline-offset: 3px; background: var(--saffron-wash); border-radius: 2px; }
+  .card { position: absolute; left: 736px; width: 480px; background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 12px 16px 13px; }
+  .card .pkg { font: 500 13px 'IBM Plex Mono', monospace; color: var(--blue); }
+  .card h2 { margin-top: 3px; font: 600 18px/1.25 'Geist', sans-serif; letter-spacing: -0.015em; }
+  .card p { margin-top: 4px; font-size: 13.5px; color: var(--body); }
+  .card p .mono { font-size: 12.5px; color: var(--ink); }
+  svg.links { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+  footer { position: absolute; left: 64px; right: 64px; bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+  footer .facts { font: 500 14px 'IBM Plex Mono', monospace; color: var(--body); }
+  footer code { font: 500 14px 'IBM Plex Mono', monospace; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 8px; }
+  footer code b { color: var(--saffron); font-weight: 500; }
+</style></head>
+<body>
+  <header>
+    <div>
+      <div class="eyebrow">@merainvoices · open source</div>
+      <h1>Anatomy of a GST invoice</h1>
+    </div>
+    <div class="brand"><img src="brand-mark.svg" alt=""/>Mera Invoices</div>
+  </header>
+
+  <div class="paper">
+    <div class="top">
+      <div>
+        <div class="seller">Shree Ganesh Electricals</div>
+        <div class="small muted">Pune, Maharashtra · <span class="mono">GSTIN 27ABCFS1234K1Z7</span></div>
+      </div>
+      <div>
+        <div class="kind">Tax invoice</div>
+        <div class="mono small spot" data-anchor="number" style="margin-top:4px">INV/2026-27/007</div>
+        <div class="mono small muted" style="text-align:right;margin-top:2px">24 Nov 2026</div>
+      </div>
+    </div>
+
+    <div class="billto">
+      <div>
+        <div class="label">Bill to</div>
+        <div style="font-weight:600;margin-top:2px">Patil Hardware Stores</div>
+        <div class="mono small spot" data-anchor="gstin" style="display:inline-block;margin-top:3px">GSTIN 27AAKFP5678L1ZE</div>
+      </div>
+      <div style="text-align:right">
+        <div class="label">Place of supply</div>
+        <div class="small" style="margin-top:2px">Maharashtra (27)</div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>Item</th><th>Qty</th><th>Rate</th><th>Taxable</th><th>GST</th></tr></thead>
+      <tbody>
+        <tr><td>LED panel light 18W</td><td class="mono">4</td><td class="mono">1,250.00</td><td class="mono">5,000.00</td><td class="mono">18%</td></tr>
+        <tr><td>Copper wire 1.5 sq mm, 90 m<span class="note">5% off</span></td><td class="mono">2</td><td class="mono">1,890.00</td><td class="mono">3,591.00</td><td class="mono">18%</td></tr>
+        <tr><td>Fitting charges</td><td class="mono">1</td><td class="mono">850.00</td><td class="mono">850.00</td><td class="mono">18%</td></tr>
+        <tr><td>Freight</td><td></td><td></td><td class="mono">300.00</td><td class="mono">18%</td></tr>
+      </tbody>
+    </table>
+
+    <div style="display:flex;justify-content:flex-end;margin-top:12px">
+      <div class="totals spot" data-anchor="totals" style="padding:0 4px">
+        <div class="row"><span class="muted">Taxable value</span><span class="mono">9,741.00</span></div>
+        <div class="row"><span class="muted">CGST 9%</span><span class="mono">876.69</span></div>
+        <div class="row"><span class="muted">SGST 9%</span><span class="mono">876.69</span></div>
+        <div class="row"><span class="muted">Round off</span><span class="mono">−0.38</span></div>
+        <div class="row grand"><span>Total</span><span class="mono">₹11,494.00</span></div>
+      </div>
+    </div>
+    <div class="spot" data-anchor="words" style="margin-top:14px;padding:2px 4px;width:330px">
+      <div class="label">Amount in words</div>
+      <p style="margin-top:3px;font-size:13.5px;line-height:1.35">Indian Rupees Eleven Thousand Four Hundred Ninety Four Only</p>
+    </div>
+    <div class="qr spot" data-anchor="qr" style="margin-top:14px;padding:3px;width:fit-content">
+      <img src="upi-qr.svg" alt=""/>
+      <div class="small muted" style="width:130px;padding-right:4px">Scan to pay with any UPI app</div>
+    </div>
+  </div>
+
+  <div class="card" data-card="number">
+    <div class="pkg">@merainvoices/inr</div>
+    <h2>Numbers the invoice</h2>
+    <p>Financial year 2026-27 from the date · 15 of the 16 characters allowed.</p>
+  </div>
+  <div class="card" data-card="gstin">
+    <div class="pkg">@merainvoices/gstin</div>
+    <h2>Checks the buyer's GSTIN</h2>
+    <p>Valid · Maharashtra · same state as the seller, so <b>CGST + SGST</b>.</p>
+  </div>
+  <div class="card" data-card="totals">
+    <div class="pkg">@merainvoices/gst-invoice</div>
+    <h2>Adds it up, to the paisa</h2>
+    <p>Line discounts, freight with its own GST, the CGST/SGST split and round-off <span class="mono">−0.38</span>. The lines always match the totals.</p>
+  </div>
+  <div class="card" data-card="words">
+    <div class="pkg">@merainvoices/inr</div>
+    <h2>Writes the amount in words</h2>
+    <p>In lakh and crore, as Indian invoices print it.</p>
+  </div>
+  <div class="card" data-card="qr">
+    <div class="pkg">@merainvoices/upi</div>
+    <h2>Builds the UPI payment link</h2>
+    <p><span class="mono">upi://pay?…&amp;am=11494.00</span> — put it in a QR code or behind a Pay button.</p>
+  </div>
+
+  <svg class="links" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <footer>
+    <div class="facts">gstin · inr · upi · gst-invoice · gstr2b · bank-statement — zero dependencies · TypeScript · MIT</div>
+    <code><b>$</b> npm i @merainvoices/gst-invoice</code>
+  </footer>
+
+<script>
+  // Connectors: from the invoice's right edge, level with each highlighted
+  // part, to the left edge of its card. Drawn after fonts load so positions are final.
+  document.fonts.ready.then(() => {
+    const svg = document.querySelector('svg.links')
+    const paper = document.querySelector('.paper').getBoundingClientRect()
+    // Place each card level with its part of the invoice, without overlaps.
+    const cards = [...document.querySelectorAll('[data-card]')]
+      .map((card) => ({ card, y: (({ top, height }) => top + height / 2)(document.querySelector(`[data-anchor="${card.dataset.card}"]`).getBoundingClientRect()) }))
+      .sort((a, b) => a.y - b.y)
+    let bottom = paper.top - 12
+    for (const { card, y } of cards) {
+      const top = Math.max(y - 26, bottom + 12)
+      card.style.top = `${top}px`
+      bottom = top + card.getBoundingClientRect().height
+    }
+    const overflow = bottom - paper.bottom
+    if (overflow > 0) for (const { card } of cards) card.style.top = `${parseFloat(card.style.top) - overflow}px`
+    const ns = 'http://www.w3.org/2000/svg'
+    const add = (tag, attrs) => { const el = document.createElementNS(ns, tag); for (const k in attrs) el.setAttribute(k, attrs[k]); svg.appendChild(el); return el }
+    for (const card of document.querySelectorAll('[data-card]')) {
+      const anchor = document.querySelector(`[data-anchor="${card.dataset.card}"]`).getBoundingClientRect()
+      const c = card.getBoundingClientRect()
+      const x0 = anchor.right + 4, y0 = anchor.top + anchor.height / 2
+      const x1 = paper.right + 18
+      const x2 = c.left, y2 = c.top + 26
+      const r = Math.min(10, Math.abs(y2 - y0) / 2)
+      const dir = y2 > y0 ? 1 : -1
+      const d = Math.abs(y2 - y0) < 1
+        ? `M${x0},${y0} H${x2}`
+        : `M${x0},${y0} H${x1 - r} Q${x1},${y0} ${x1},${y0 + dir * r} V${y2 - dir * r} Q${x1},${y2} ${x1 + r},${y2} H${x2}`
+      add('path', { d, fill: 'none', stroke: '#2B3990', 'stroke-width': 1.5 })
+      add('circle', { cx: x0, cy: y0, r: 3.5, fill: '#FF9933' })
+      add('circle', { cx: x2, cy: y2, r: 3.5, fill: '#2B3990' })
+    }
+    document.body.dataset.ready = '1'
+  })
+</script>
+</body></html>

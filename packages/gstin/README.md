@@ -67,6 +67,50 @@ Rules, in order:
 
 Exports and other document-level cases are yours to add.
 
+## Recipes
+
+### Your own error messages, in any language
+
+`code` is stable, so map it to your own words:
+
+```js
+const HINDI = {
+  EMPTY: 'GSTIN दर्ज करें',
+  LENGTH: 'GSTIN में ठीक 15 अक्षर होते हैं',
+  FORMAT: 'यह GSTIN के प्रारूप में नहीं है',
+  STATE: 'शुरू के दो अंक किसी राज्य का कोड नहीं हैं',
+  CHECKSUM: 'आख़िरी अक्षर मेल नहीं खाता — टाइपिंग की ग़लती जाँचें',
+}
+
+const r = validateGSTIN(input)
+const message = r.valid ? '' : HINDI[r.code]
+```
+
+Full script: [`examples/gstin-hindi.mjs`](https://github.com/merainvoices/oss/blob/main/examples/gstin-hindi.mjs).
+
+### Fill the state while the GSTIN is being typed
+
+```js
+gstinInput.addEventListener('input', (e) => {
+  const code = stateCodeFromGSTIN(e.target.value)   // works from the first two characters
+  if (code) stateSelect.value = code
+})
+```
+
+### A place-of-supply picker
+
+```js
+stateSelect.innerHTML = STATES.map((s) => `<option value="${s.code}">${s.name} (${s.code})</option>`).join('')
+```
+
+### With `@merainvoices/gst-invoice`
+
+```js
+import { computeInvoice } from '@merainvoices/gst-invoice'
+
+const invoice = computeInvoice({ items, interState: isInterStateSupply({ seller, buyer }) })
+```
+
 ## API
 
 | Export | Returns |
@@ -85,6 +129,8 @@ Exports and other document-level cases are yours to add.
 | `isInterStateSupply({ seller, buyer, shipToStateCode })` | `boolean` |
 | `STATES`, `STATE_CODES` | frozen `{ code, name }[]` |
 | `GSTIN_REGEX`, `PAN_REGEX` | `RegExp` |
+
+Part of the [Mera Invoices toolkit](https://github.com/merainvoices/oss): [gstin](https://www.npmjs.com/package/@merainvoices/gstin) · [gst-invoice](https://www.npmjs.com/package/@merainvoices/gst-invoice) · [inr](https://www.npmjs.com/package/@merainvoices/inr) · [upi](https://www.npmjs.com/package/@merainvoices/upi) · [gstr2b](https://www.npmjs.com/package/@merainvoices/gstr2b) · [bank-statement](https://www.npmjs.com/package/@merainvoices/bank-statement).
 
 ## Licence
 

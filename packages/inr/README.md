@@ -72,6 +72,34 @@ Template tokens:
 
 `checkInvoiceNumber` follows Rule 46(b) of the CGST Rules: up to 16 characters, using only letters, digits, hyphen (`-`) and slash (`/`). Numbers must also be unique within a financial year; that check is yours, against your own records.
 
+## Recipes
+
+### The invoice footer
+
+```js
+amountInWords(invoice.total, { prefix: 'Rupees' })
+// 'Rupees Eleven Thousand Four Hundred Ninety Four Only'
+```
+
+### A new number series every April
+
+```js
+const fy = financialYear(invoiceDate)
+const seq = last && last.fy === fy.label ? last.seq + 1 : 1   // restart at 1 in a new financial year
+const number = formatInvoiceNumber('INV/{yyyy-yy}/{n}', { seq, fy })
+```
+
+### Check a numbering template before saving it
+
+Try the longest number the series will produce this year:
+
+```js
+checkInvoiceNumber(formatInvoiceNumber('INV/{yyyy-yy}/{n}', { seq: 9999, date: new Date() })).valid    // true: 16 characters
+checkInvoiceNumber(formatInvoiceNumber('INV/{yyyy-yy}/{n}', { seq: 10000, date: new Date() })).valid   // false: 17
+```
+
+Part of the [Mera Invoices toolkit](https://github.com/merainvoices/oss): [gstin](https://www.npmjs.com/package/@merainvoices/gstin) · [gst-invoice](https://www.npmjs.com/package/@merainvoices/gst-invoice) · [inr](https://www.npmjs.com/package/@merainvoices/inr) · [upi](https://www.npmjs.com/package/@merainvoices/upi) · [gstr2b](https://www.npmjs.com/package/@merainvoices/gstr2b) · [bank-statement](https://www.npmjs.com/package/@merainvoices/bank-statement).
+
 ## Licence
 
 MIT © REKSMART Insights Private Limited. From [Mera Invoices](https://merainvoices.com), GST billing for Indian businesses.

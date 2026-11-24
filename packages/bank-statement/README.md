@@ -6,6 +6,8 @@ It finds the table under the account details, works out which column is which, r
 
 Zero dependencies. Works in Node 18+, browsers and edge runtimes. Ships with TypeScript types.
 
+<img src="https://raw.githubusercontent.com/merainvoices/oss/main/docs/images/bank-statement.png" alt="An HDFC-style bank statement matched against receipt and payment entries: four pairs, a bank charge not in the books, an uncleared cheque not on the statement yet, and a running-balance check that passes." width="100%"/>
+
 ```sh
 npm install @merainvoices/bank-statement
 ```
@@ -84,9 +86,36 @@ Each transaction and each entry is used at most once. The closest dates are pair
 
 `parseCsv(text, { delimiter })`, `findHeaderRow(rows)`, `guessColumns(headerCells)`, `hasRequiredColumns(columns)`, `readTransactions(rows, headerRow, columns)`, `parseDate(value)`, `parseAmount(value)`.
 
+## Recipes
+
+### Entries from your ledger
+
+Direction is from the bank account's side: money received into the account is `'in'`, money paid out of it is `'out'`.
+
+```js
+const entries = ledgerLines.map((line) => ({
+  id: line.voucherNo,
+  direction: line.debit > 0 ? 'in' : 'out',    // a debit to the bank account is money in
+  amount: line.debit || line.credit,
+  date: line.date,                             // 'YYYY-MM-DD'
+}))
+```
+
+### Your bank names its columns differently
+
+```js
+readStatement(rows, { headerRow: 4, columns: { date: 0, description: 2, debit: 5, credit: 6, balance: 7 } })
+```
+
+Any column you don't name is still guessed from the header.
+
+Full script: [`examples/bank-statement.mjs`](https://github.com/merainvoices/oss/blob/main/examples/bank-statement.mjs).
+
 ## Privacy
 
 Everything runs where you call it. Nothing is sent anywhere.
+
+Part of the [Mera Invoices toolkit](https://github.com/merainvoices/oss): [gstin](https://www.npmjs.com/package/@merainvoices/gstin) · [gst-invoice](https://www.npmjs.com/package/@merainvoices/gst-invoice) · [inr](https://www.npmjs.com/package/@merainvoices/inr) · [upi](https://www.npmjs.com/package/@merainvoices/upi) · [gstr2b](https://www.npmjs.com/package/@merainvoices/gstr2b) · [bank-statement](https://www.npmjs.com/package/@merainvoices/bank-statement).
 
 ## Licence
 

@@ -1,6 +1,6 @@
 {
   "name": "@merainvoices/gstin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Validate GSTINs (with check digit), read state and PAN, and decide CGST+SGST vs IGST.",
   "keywords": [
     "gstin",

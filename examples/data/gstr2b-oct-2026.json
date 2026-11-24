@@ -1,0 +1,104 @@
+{
+  "data": {
+    "gstin": "27ABCFS1234K1Z7",
+    "rtnprd": "102026",
+    "docdata": {
+      "b2b": [
+        {
+          "ctin": "27AABFL4321K1ZF",
+          "trdnm": "Lakshmi Components",
+          "supfildt": "11-11-2026",
+          "inv": [
+            {
+              "inum": "INV-001",
+              "dt": "05-10-2026",
+              "val": 11800,
+              "itcavl": "Y",
+              "rev": "N",
+              "imsStatus": "N",
+              "items": [
+                {
+                  "num": 1,
+                  "rt": 18,
+                  "txval": 10000,
+                  "igst": 0,
+                  "cgst": 900,
+                  "sgst": 900,
+                  "cess": 0
+                }
+              ]
+            },
+            {
+              "inum": "LC/042",
+              "dt": "12-10-2026",
+              "val": 5600,
+              "itcavl": "Y",
+              "rev": "N",
+              "items": [
+                {
+                  "num": 1,
+                  "rt": 12,
+                  "txval": 5000,
+                  "igst": 0,
+                  "cgst": 300,
+                  "sgst": 300,
+                  "cess": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ctin": "29AACFK8765M1ZJ",
+          "trdnm": "Karnataka Metals",
+          "supfildt": "10-11-2026",
+          "inv": [
+            {
+              "inum": "KM-007",
+              "dt": "18-10-2026",
+              "val": 7080,
+              "itcavl": "Y",
+              "rev": "N",
+              "items": [
+                {
+                  "num": 1,
+                  "rt": 18,
+                  "txval": 6000,
+                  "igst": 1080,
+                  "cgst": 0,
+                  "sgst": 0,
+                  "cess": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ctin": "27ADBPS2468Q1ZT",
+          "trdnm": "Sai Traders",
+          "supfildt": "09-11-2026",
+          "inv": [
+            {
+              "inum": "ST-118",
+              "dt": "22-10-2026",
+              "val": 2360,
+              "itcavl": "Y",
+              "rev": "N",
+              "items": [
+                {
+                  "num": 1,
+                  "rt": 18,
+                  "txval": 2000,
+                  "igst": 0,
+                  "cgst": 180,
+                  "sgst": 180,
+                  "cess": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

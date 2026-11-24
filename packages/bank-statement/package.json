@@ -1,6 +1,6 @@
 {
   "name": "@merainvoices/bank-statement",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Read Indian bank statement exports (HDFC, SBI and similar layouts) and match them against your own records.",
   "keywords": [
     "bank-statement",

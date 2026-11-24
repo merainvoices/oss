@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- Source for docs/images/gstr2b.png (1280×820, rendered at 2×).
+     Rows and figures are reconcile() output for this sample; GSTINs are made up.
+     Regenerate: node docs/images/render.mjs gstr2b -->
+<html lang="en"><head><meta charset="UTF-8"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="base.css"/>
+<style>
+  html, body { width: 1280px; height: 820px; }
+  .cols { position: absolute; left: 64px; right: 64px; top: 150px; display: flex; justify-content: space-between; }
+  .rows { position: absolute; left: 64px; right: 64px; top: 178px; display: grid; gap: 12px; }
+  .row { display: grid; grid-template-columns: 372px 1fr 372px; align-items: center; height: 84px; }
+  .doc { height: 84px; padding: 11px 16px; display: flex; flex-direction: column; justify-content: center; }
+  .doc .who { font-weight: 600; }
+  .doc .nums { margin-top: 3px; font-size: 13px; color: var(--body); }
+  .doc .nums b { color: var(--ink); font-weight: 500; }
+  .doc.missing { background: transparent; border: 1.5px dashed #C6D0DF; color: var(--muted); align-items: center; font-size: 14px; }
+  .verdict { position: relative; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .verdict .line { position: absolute; left: 0; right: 0; top: 16px; border-top: 1.5px solid var(--blue); z-index: 0; }
+  .verdict .line.dashed { border-top-style: dashed; border-color: #AEB8CB; }
+  .verdict .pill { position: relative; z-index: 1; }
+  .verdict .why { font-size: 13px; color: var(--body); text-align: center; }
+  .diff { color: var(--warn); font-weight: 600; }
+  .summary { position: absolute; left: 64px; right: 64px; top: 652px; display: grid; grid-template-columns: repeat(4, 1fr); background: var(--ink); color: #fff; border-radius: 12px; overflow: hidden; }
+  .summary > div { padding: 14px 20px 15px; }
+  .summary > div + div { border-left: 1px solid rgba(255, 255, 255, .12); }
+  .summary .k { font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #AEB8CB; }
+  .summary .v { margin-top: 4px; font: 600 22px 'IBM Plex Mono', monospace; letter-spacing: -0.01em; }
+  .summary .v.hot { color: var(--saffron); }
+</style></head>
+<body>
+  <header>
+    <div>
+      <div class="eyebrow">@merainvoices/gstr2b</div>
+      <h1>Matching GSTR-2B with your books</h1>
+    </div>
+    <div class="brand"><img src="brand-mark.svg" alt=""/>Mera Invoices</div>
+  </header>
+
+  <div class="cols"><div class="label">Your purchase register</div><div class="label">GSTR-2B from the GST portal · Oct 2026</div></div>
+
+  <div class="rows">
+    <div class="row">
+      <div class="card doc"><div class="who">Lakshmi Components</div><div class="nums mono">INV-001 · 05 Oct · <b>10,000.00</b> + GST <b>1,800.00</b></div></div>
+      <div class="verdict"><div class="line"></div><span class="pill good">Matched</span><div class="why">Same number, same amounts</div></div>
+      <div class="card doc"><div class="who">Lakshmi Components</div><div class="nums mono">INV-001 · 05 Oct · <b>10,000.00</b> + GST <b>1,800.00</b></div></div>
+    </div>
+    <div class="row">
+      <div class="card doc"><div class="who">Lakshmi Components</div><div class="nums mono">LC/042 · 12 Oct · <b>5,000.00</b> + GST <b class="diff">900.00</b></div></div>
+      <div class="verdict"><div class="line"></div><span class="pill warn">Amounts differ</span><div class="why">GST is ₹300 less on the portal</div></div>
+      <div class="card doc"><div class="who">Lakshmi Components</div><div class="nums mono">LC/042 · 12 Oct · <b>5,000.00</b> + GST <b class="diff">600.00</b></div></div>
+    </div>
+    <div class="row">
+      <div class="card doc"><div class="who">Karnataka Metals</div><div class="nums mono"><b>KM/7</b> · 18 Oct · <b>6,000.00</b> + IGST <b>1,080.00</b></div></div>
+      <div class="verdict"><div class="line"></div><span class="pill info">Probably the same</span><div class="why"><span class="mono">KM/7</span> ↔ <span class="mono">KM-007</span> — confirm it</div></div>
+      <div class="card doc"><div class="who">Karnataka Metals</div><div class="nums mono"><b>KM-007</b> · 18 Oct · <b>6,000.00</b> + IGST <b>1,080.00</b></div></div>
+    </div>
+    <div class="row">
+      <div class="doc missing" style="border-radius:10px">Not in your books</div>
+      <div class="verdict"><div class="line dashed"></div><span class="pill info">Only on the portal</span><div class="why">₹360 of ITC you haven't booked</div></div>
+      <div class="card doc"><div class="who">Sai Traders</div><div class="nums mono">ST-118 · 22 Oct · <b>2,000.00</b> + GST <b>360.00</b></div></div>
+    </div>
+    <div class="row">
+      <div class="card doc"><div class="who">Ganesh Hardware</div><div class="nums mono">GH-55 · 26 Oct · <b>4,000.00</b> + GST <b>720.00</b></div></div>
+      <div class="verdict"><div class="line dashed"></div><span class="pill bad">Only in your books</span><div class="why">Supplier hasn't reported it — ₹720 ITC at risk</div></div>
+      <div class="doc missing" style="border-radius:10px">Not on the portal yet</div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <div><div class="k">ITC on GSTR-2B</div><div class="v">₹3,840</div></div>
+    <div><div class="k">ITC in your books</div><div class="v">₹4,500</div></div>
+    <div><div class="k">At risk</div><div class="v hot">₹720</div></div>
+    <div><div class="k">Not booked yet</div><div class="v">₹360</div></div>
+  </div>
+
+  <footer>
+    <div class="facts">parseGstr2b(file) → reconcile(gstr2b, purchases)</div>
+    <code><b>$</b> npm i @merainvoices/gstr2b</code>
+  </footer>
+  <script>document.fonts.ready.then(() => { document.body.dataset.ready = '1' })</script>
+</body></html>

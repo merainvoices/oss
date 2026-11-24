@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!-- Source for docs/images/social-preview.png (1280×640, rendered at 2×) — the
+     GitHub repository's social preview (Settings → General → Social preview).
+     Regenerate: node docs/images/render.mjs social-preview -->
+<html lang="en"><head><meta charset="UTF-8"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="base.css"/>
+<style>
+  html, body { width: 1280px; height: 640px; }
+  .left { position: absolute; left: 80px; top: 70px; bottom: 64px; width: 640px; display: flex; flex-direction: column; justify-content: space-between; }
+  .brand { font-size: 24px; gap: 14px; }
+  .brand img { width: 48px; height: 48px; }
+  .brand .tag { font: 500 14px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-left: 14px; margin-left: 4px; border-left: 1px solid #C6D0DF; }
+  .title { font: 600 54px/1.06 'Geist', sans-serif; letter-spacing: -0.035em; text-wrap: balance; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .chips span { font: 500 15px 'IBM Plex Mono', monospace; color: var(--ink); background: #fff; border: 1px solid var(--rule); padding: 5px 11px; border-radius: 8px; }
+  .chips span b { color: var(--blue); font-weight: 500; }
+  .url { font: 500 19px 'IBM Plex Mono', monospace; color: var(--blue); }
+  .facts { margin-top: 6px; font: 500 15px 'IBM Plex Mono', monospace; color: var(--body); }
+  .paper { right: 76px; top: 96px; width: 380px; padding: 24px 24px 20px; transform: rotate(-2deg); font-size: 14px; }
+  .paper .kind { font: 700 12px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); }
+  .paper .seller { font: 700 17px 'Geist', sans-serif; letter-spacing: -0.015em; }
+  .paper .row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--rule); }
+  .paper .total { display: flex; justify-content: space-between; margin-top: 8px; padding: 8px 0 7px; border-top: 1.5px solid var(--ink); border-bottom: 4px double var(--ink); font-weight: 700; font-size: 17px; }
+  .paper .qr { display: flex; gap: 10px; align-items: center; margin-top: 14px; }
+  .paper .qr img { width: 60px; height: 60px; }
+</style></head>
+<body>
+  <div class="left">
+    <div class="brand"><img src="brand-mark.svg" alt=""/>Mera Invoices<span class="tag">Open source</span></div>
+    <div>
+      <div class="title">Building blocks for Indian GST billing</div>
+      <div class="chips">
+        <span><b>@merainvoices/</b>gstin</span><span><b>@merainvoices/</b>gst-invoice</span><span><b>@merainvoices/</b>inr</span>
+        <span><b>@merainvoices/</b>upi</span><span><b>@merainvoices/</b>gstr2b</span><span><b>@merainvoices/</b>bank-statement</span>
+      </div>
+    </div>
+    <div>
+      <div class="url">github.com/merainvoices/oss</div>
+      <div class="facts">Zero dependencies · TypeScript · MIT</div>
+    </div>
+  </div>
+
+  <div class="paper">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><div class="seller">Shree Ganesh Electricals</div><div class="kind">Tax invoice</div></div>
+    <div class="mono muted small" style="margin-top:3px"><span class="spot">GSTIN 27AAKFP5678L1ZE</span></div>
+    <div style="margin-top:14px;border-top:1.5px solid var(--ink)">
+      <div class="row"><span>LED panel light 18W × 4</span><span class="mono">5,000.00</span></div>
+      <div class="row"><span>Copper wire × 2, 5% off</span><span class="mono">3,591.00</span></div>
+      <div class="row"><span>Fitting charges, freight</span><span class="mono">1,150.00</span></div>
+      <div class="row"><span class="muted">CGST + SGST 18%</span><span class="mono">1,753.38</span></div>
+      <div class="row"><span class="muted">Round off</span><span class="mono">−0.38</span></div>
+    </div>
+    <div class="total spot"><span>Total</span><span class="mono">₹11,494.00</span></div>
+    <div class="qr"><img src="upi-qr.svg" alt=""/><div class="small muted">Indian Rupees Eleven Thousand Four Hundred Ninety Four Only</div></div>
+  </div>
+  <script>document.fonts.ready.then(() => { document.body.dataset.ready = '1' })</script>
+</body></html>

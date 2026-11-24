@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- Source for docs/images/bank-statement.png (1280×760, rendered at 2×).
+     Pairs, day gaps and the balance check are readStatement / matchTransactions /
+     checkRunningBalance output for this sample statement.
+     Regenerate: node docs/images/render.mjs bank-statement -->
+<html lang="en"><head><meta charset="UTF-8"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="base.css"/>
+<style>
+  html, body { width: 1280px; height: 760px; }
+  .paper { left: 64px; top: 150px; width: 604px; padding: 20px 22px 18px; }
+  .paper .file { display: flex; justify-content: space-between; }
+  table { width: 100%; margin-top: 12px; border-collapse: collapse; }
+  th { font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: right; padding: 0 0 6px; border-bottom: 1.5px solid var(--ink); }
+  th:nth-child(-n+2), td:nth-child(-n+2) { text-align: left; }
+  td { padding: 0 0; height: 64px; border-bottom: 1px solid var(--rule); text-align: right; font: 400 13px 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+  td:nth-child(2) { font: 400 13px 'IBM Plex Sans', sans-serif; max-width: 210px; padding-right: 8px; }
+  td.out { color: var(--ink); }
+  td.in { color: var(--good); font-weight: 600; }
+  .check { margin-top: 14px; display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--good); font-weight: 600; }
+  .check svg { flex: none; }
+  .entries { position: absolute; left: 808px; width: 408px; top: 150px; }
+  .entries .label { margin-bottom: 10px; }
+  .entry { position: absolute; left: 808px; width: 408px; height: 56px; padding: 6px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .entry .id { font: 500 12px 'IBM Plex Mono', monospace; color: var(--blue); }
+  .entry .what { font-weight: 600; font-size: 14px; }
+  .entry .amt { text-align: right; font: 500 14px 'IBM Plex Mono', monospace; }
+  .entry .amt small { display: block; font: 400 12px 'IBM Plex Mono', monospace; color: var(--muted); }
+  .gap { position: absolute; font: 500 11px 'IBM Plex Mono', monospace; color: var(--blue); background: var(--ground); padding: 1px 6px; border-radius: 4px; transform: translate(-50%, -50%); white-space: nowrap; }
+  .flag { position: absolute; transform: translateY(-50%); }
+</style></head>
+<body>
+  <header>
+    <div>
+      <div class="eyebrow">@merainvoices/bank-statement</div>
+      <h1>Matching a bank statement</h1>
+    </div>
+    <div class="brand"><img src="brand-mark.svg" alt=""/>Mera Invoices</div>
+  </header>
+
+  <div class="paper">
+    <div class="file"><div class="label">Bank statement · HDFC-style CSV</div><div class="label">Nov 2026</div></div>
+    <table>
+      <thead><tr><th>Date</th><th>Narration</th><th>Withdrawal</th><th>Deposit</th><th>Balance</th></tr></thead>
+      <tbody>
+        <tr data-t="0"><td>01/11/26</td><td>UPI-PATIL HARDWARE STORES</td><td></td><td class="in">11,494.00</td><td>61,494.00</td></tr>
+        <tr data-t="1"><td>03/11/26</td><td>NEFT-LAKSHMI COMPONENTS</td><td class="out">11,800.00</td><td></td><td>49,694.00</td></tr>
+        <tr data-t="2"><td>05/11/26</td><td>IMPS-SAI TRADERS</td><td class="out">2,360.00</td><td></td><td>47,334.00</td></tr>
+        <tr data-t="3"><td>07/11/26</td><td>ACH D-RENT NOVEMBER</td><td class="out">25,000.00</td><td></td><td>22,334.00</td></tr>
+        <tr data-t="4"><td>08/11/26</td><td>SMS ALERT CHGS INCL GST</td><td class="out">17.70</td><td></td><td>22,316.30</td></tr>
+      </tbody>
+    </table>
+    <div class="check"><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#E3F2EA"/><path d="M5 9.3l2.6 2.6L13 6.5" fill="none" stroke="#1E6B47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Running balance checks out</div>
+  </div>
+
+  <div class="entries"><div class="label">Your entries</div></div>
+  <div class="card entry" data-e="RCPT-41"><div><div class="id">RCPT-41</div><div class="what">Receipt · Patil Hardware Stores</div></div><div class="amt" style="color:var(--good)">+11,494.00<small>01 Nov</small></div></div>
+  <div class="card entry" data-e="PV-88"><div><div class="id">PV-88</div><div class="what">Payment · Lakshmi Components</div></div><div class="amt">−11,800.00<small>02 Nov</small></div></div>
+  <div class="card entry" data-e="PV-89"><div><div class="id">PV-89</div><div class="what">Payment · Sai Traders</div></div><div class="amt">−2,360.00<small>05 Nov</small></div></div>
+  <div class="card entry" data-e="PV-90"><div><div class="id">PV-90</div><div class="what">Rent · November</div></div><div class="amt">−25,000.00<small>07 Nov</small></div></div>
+  <div class="card entry" data-e="PV-91" style="border-style:dashed"><div><div class="id">PV-91</div><div class="what">Cheque · Gupta &amp; Sons</div></div><div class="amt">−6,500.00<small>06 Nov</small></div></div>
+
+  <span class="pill bad flag" data-flag-row="4">Not in your books</span>
+  <span class="pill warn flag" data-flag-entry="PV-91">Not on the statement yet</span>
+
+  <svg class="links" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <footer>
+    <div class="facts">readStatement(csv) → matchTransactions(transactions, entries)</div>
+    <code><b>$</b> npm i @merainvoices/bank-statement</code>
+  </footer>
+
+<script>
+  // matchTransactions() output for this sample: [statement row, entry, day gap]
+  const MATCHES = [[0, 'RCPT-41', 0], [1, 'PV-88', 1], [2, 'PV-89', 0], [3, 'PV-90', 0]]
+  document.fonts.ready.then(() => {
+    const paper = document.querySelector('.paper').getBoundingClientRect()
+    const rowY = (i) => { const r = document.querySelector(`tr[data-t="${i}"]`).getBoundingClientRect(); return r.top + r.height / 2 }
+    // Entries level with their statement rows; the unmatched one after them.
+    const order = ['RCPT-41', 'PV-88', 'PV-89', 'PV-90', 'PV-91']
+    order.forEach((id, k) => {
+      const el = document.querySelector(`[data-e="${id}"]`)
+      const y = k < 4 ? rowY(k) : rowY(3) + 2 * (rowY(3) - rowY(2)) + 18
+      el.style.top = `${y - 28}px`
+    })
+    const svg = document.querySelector('svg.links')
+    const ns = 'http://www.w3.org/2000/svg'
+    const add = (tag, attrs) => { const el = document.createElementNS(ns, tag); for (const k in attrs) el.setAttribute(k, attrs[k]); svg.appendChild(el); return el }
+    for (const [row, id, gap] of MATCHES) {
+      const y0 = rowY(row)
+      const e = document.querySelector(`[data-e="${id}"]`).getBoundingClientRect()
+      const x0 = paper.right + 6, x1 = e.left, y1 = e.top + e.height / 2
+      add('path', { d: `M${x0},${y0} C${x0 + 50},${y0} ${x1 - 50},${y1} ${x1},${y1}`, fill: 'none', stroke: '#2B3990', 'stroke-width': 1.5 })
+      add('circle', { cx: x0, cy: y0, r: 3.5, fill: '#FF9933' })
+      add('circle', { cx: x1, cy: y1, r: 3.5, fill: '#2B3990' })
+      const tag = document.createElement('span')
+      tag.className = 'gap'
+      tag.textContent = gap === 0 ? 'same day' : `${gap} day${gap > 1 ? 's' : ''} apart`
+      tag.style.left = `${(x0 + x1) / 2}px`
+      tag.style.top = `${(y0 + y1) / 2}px`
+      document.body.appendChild(tag)
+    }
+    const flagRow = document.querySelector('[data-flag-row]')
+    flagRow.style.left = `${paper.right + 14}px`
+    flagRow.style.top = `${rowY(4)}px`
+    const pv91 = document.querySelector('[data-e="PV-91"]').getBoundingClientRect()
+    const flagE = document.querySelector('[data-flag-entry]')
+    flagE.style.left = `${pv91.left}px`
+    flagE.style.top = `${pv91.bottom + 22}px`
+    document.body.dataset.ready = '1'
+  })
+</script>
+</body></html>

@@ -7,3 +7,4 @@ Issues and pull requests are welcome.
 - Keep functions pure: no network, no file system, no globals.
 - Update the package's `README.md` and `src/index.d.ts` when you change its API.
 - Tax rules change. When a change depends on a GST rule, link the notification, circular or rule in the pull request.
+- README images live in `docs/images/`. Edit the page in `docs/images/src/` and re-render with `node docs/images/render.mjs <name>` (needs Playwright: `npm i --no-save playwright && npx playwright install chromium`). Compute any figures with the packages themselves, and keep sample GSTINs and UPI IDs made up.

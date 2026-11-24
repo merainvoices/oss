@@ -1,6 +1,6 @@
 {
   "name": "@merainvoices/gstr2b",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Read the GSTR-2B JSON from the GST portal and match it against your purchase register.",
   "keywords": [
     "gstr-2b",
